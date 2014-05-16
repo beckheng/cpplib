@@ -12,7 +12,9 @@
 #include <iostream>
 #include <vector>
 
-long getMilliSecond();
+double getMilliSecond();
+double getMicroSecond();
+
 void stringReplace(std::string &s, const std::string &search, const std::string &replace);
 std::vector<std::string> split(const std::string &s, const std::string &sep);
 

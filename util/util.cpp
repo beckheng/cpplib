@@ -8,17 +8,34 @@
 
 #include "util.h"
 
+#include <string.h>
 #include <stdio.h>
 #include <sys/time.h>
 #include <locale>
 #include <sstream>
 
-long getMilliSecond()
+double getMilliSecond()
 {
 	struct timeval tv;
+	bzero(&tv, sizeof(tv));
 	gettimeofday(&tv, NULL);
 	
-	return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	double f = (double)tv.tv_sec + (float)(tv.tv_usec/1000)/(float)1000;
+//	printf("%ld %d %f\n", tv.tv_sec, tv.tv_usec, f);
+	
+	return f;
+}
+
+double getMicroSecond()
+{
+	struct timeval tv;
+	bzero(&tv, sizeof(tv));
+	gettimeofday(&tv, NULL);
+	
+	double f = (double)tv.tv_sec + (float)tv.tv_usec/(float)1000000;
+//	printf("%ld %d %f\n", tv.tv_sec, tv.tv_usec, f);
+	
+	return f;
 }
 
 void stringReplace(std::string &s, const std::string &search, const std::string &replace)
