@@ -10,9 +10,18 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
 
 double getMilliSecond(); // 取毫秒
 double getMicroSecond(); // 取微秒
+
+template <class T>
+std::string to_string2(const T &t) {
+	std::ostringstream os;
+    os << t;
+    return os.str();
+}
 
 // 字符串替换
 void stringReplace(std::string &s, const std::string &search, const std::string &replace);

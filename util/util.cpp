@@ -17,7 +17,7 @@
 double getMilliSecond()
 {
 	struct timeval tv;
-	bzero(&tv, sizeof(tv));
+	memset(&tv, 0, sizeof(tv));
 	gettimeofday(&tv, NULL);
 	
 	double f = (double)tv.tv_sec + (float)(tv.tv_usec/1000)/(float)1000;
@@ -29,7 +29,7 @@ double getMilliSecond()
 double getMicroSecond()
 {
 	struct timeval tv;
-	bzero(&tv, sizeof(tv));
+	memset(&tv, 0, sizeof(tv));
 	gettimeofday(&tv, NULL);
 	
 	double f = (double)tv.tv_sec + (float)tv.tv_usec/(float)1000000;
