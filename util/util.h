@@ -35,4 +35,8 @@ std::string formatDateTime(const char*format);
 // 格式化日期显示，指定时间格式化
 std::string formatDateTime(const struct tm *t, const char *format);
 
+// 某范围随机数
+// min <= result <= max
+int genRandom(int min, int max);
+
 #endif

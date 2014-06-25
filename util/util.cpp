@@ -10,6 +10,8 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <sys/time.h>
 #include <locale>
 #include <sstream>
@@ -91,4 +93,16 @@ std::string formatDateTime(const struct tm *t, const char *format)
 	std::string s = buffer;
 	
 	return s;
+}
+
+static bool __hasRunSRAND = false;
+int genRandom(int min, int max)
+{
+	if (!__hasRunSRAND)
+	{
+		__hasRunSRAND = true;
+		srand(time(NULL));
+	}
+	
+	return rand() % (max - min + 1) + min;
 }
