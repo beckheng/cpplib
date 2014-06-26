@@ -26,4 +26,6 @@ void addAnimationFrame(Vector<SpriteFrame*> &vectorFrames, Texture2D * texture2d
 // 帖动画action
 Animate* getFrameAnimation(Vector<SpriteFrame*> &vectorFrames, float delayPerUnit);
 
+SpriteFrame* getSpriteFrame(std::string file);
+
 #endif

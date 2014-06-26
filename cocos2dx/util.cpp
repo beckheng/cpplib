@@ -48,3 +48,11 @@ Animate* getFrameAnimation(Vector<SpriteFrame*> &vectorFrames, float delayPerUni
 	
 	return animate;
 }
+
+SpriteFrame* getSpriteFrame(std::string file)
+{
+	Sprite *sprite;
+	sprite = Sprite::create(file);
+	
+	return sprite->getSpriteFrame();
+}
