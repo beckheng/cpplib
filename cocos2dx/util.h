@@ -28,4 +28,10 @@ Animate* getFrameAnimation(Vector<SpriteFrame*> &vectorFrames, float delayPerUni
 
 SpriteFrame* getSpriteFrame(std::string file);
 
+// 读入spritesheet文件，适用于非plist格式的文件
+Vector<SpriteFrame*> getSpriteFrames(std::string file, int width, int height);
+
+// 重新设置Sprite的刚体形状，适用于单个形状情形
+void resetPhysicsBody(Sprite *sprite, PhysicsShape *shape);
+
 #endif

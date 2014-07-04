@@ -56,3 +56,36 @@ SpriteFrame* getSpriteFrame(std::string file)
 	
 	return sprite->getSpriteFrame();
 }
+
+Vector<SpriteFrame*> getSpriteFrames(std::string file, int width, int height)
+{
+	Vector<SpriteFrame*> ret;
+
+	Texture2D *texture2d = Director::getInstance()->getTextureCache()->addImage(file);
+	
+	int startWidth = 0, startHeight = 0;
+	for (; startHeight < texture2d->getContentSize().height; startHeight += height) {
+		for (startWidth = 0; startWidth < texture2d->getContentSize().width; startWidth += width) {
+			SpriteFrame *frame = SpriteFrame::createWithTexture(texture2d, Rect(startWidth, startHeight, width, height));
+			ret.pushBack(frame);
+		}
+	}
+	
+	return ret;
+}
+
+void resetPhysicsBody(Sprite *sprite, PhysicsShape *shape)
+{
+	PhysicsBody *body = sprite->getPhysicsBody();
+	if (body != NULL)
+	{
+		body->removeAllShapes();
+	}
+	else
+	{
+		body = PhysicsBody::create();
+		sprite->setPhysicsBody(body);
+	}
+		
+	body->addShape(shape);
+}
