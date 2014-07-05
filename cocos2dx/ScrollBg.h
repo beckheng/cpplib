@@ -12,17 +12,19 @@
 
 USING_NS_CC;
 
-enum BG_DIRECTION{BG_VERTICAL, BG_HORIZONTAL};
+// Current support move left & move down
 
 /*
  example:
  Vector<Sprite*> bgs;
  bgs.pushBack(bgSprite);
  ScrollBg *scrollBg = ScrollBg::create(); // 初始化
- scrollBg->addBg(bgs, BG_HORIZONTAL); // 添加背景
+ scrollBg->setBg(bgs, -3, 0); // 添加背景, 指定滚动速度
  scrollBg->setPosition(0, 290); // 设置位置
  this->addChild(scrollBg); // 显示背景
- scrollBg->scroll(-3, 0); // 向左滚动
+ scrollBg->scroll(); // 滚动,默认帧率
+ or
+ scrollBg->scroll(1); // 滚动,指定间隔
  */
 
 class ScrollBg : public cocos2d::Node
@@ -34,21 +36,28 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(ScrollBg);
 	
-	// 添加背景，纵向/横向
-	void addBg(Vector<Sprite*> &bgs, BG_DIRECTION direction);
+	// 添加背景，设置每帧滚动速度
+	void setBg(Vector<Sprite*> &bgs, float pOffsetX, float pOffsetY);
 	
 	// 以指定的速度开始滚动，可以指定回调间隔，不执行此调用，则背景是静止的
-	void scroll(float offsetX, float offsetY);
-	void scroll(float offsetX, float offsetY, float dt);
+	void scroll();
+	void scroll(float dt);
 	
 private:
 	void addBgChild(Sprite* it, Point pos);
 	
 	void updateBg(float dt);
 	
+	void initParameter(float _offsetX, float _offsetY);
+	Point getOffsetPoint(float offset);
+	float getNewOffset(Sprite *sprite);
+	
 	Size visibleSize;
 	
-	float offsetX, offsetY;
+	float offsetX, offsetY, absOffsetX, absOffsetY;
+	int direction;
+	
+	float scrollOffsetX, scrollOffsetY;
 	
 	bool isSwapingSprite;
 	
