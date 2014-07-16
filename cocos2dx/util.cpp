@@ -51,10 +51,10 @@ Animate* getFrameAnimation(Vector<SpriteFrame*> &vectorFrames, float delayPerUni
 
 SpriteFrame* getSpriteFrame(std::string file)
 {
-	Sprite *sprite;
-	sprite = Sprite::create(file);
+	Texture2D *texture = Director::getInstance()->getTextureCache()->addImage(file);
+	Rect bounds = Rect(0, 0, texture->getContentSize().width, texture->getContentSize().height);
 	
-	return sprite->getSpriteFrame();
+	return SpriteFrame::createWithTexture(texture, bounds);
 }
 
 Vector<SpriteFrame*> getSpriteFrames(std::string file, int width, int height)
