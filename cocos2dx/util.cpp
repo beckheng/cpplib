@@ -89,3 +89,29 @@ void resetPhysicsBody(Sprite *sprite, PhysicsShape *shape)
 		
 	body->addShape(shape);
 }
+
+void repeatBackground(Node *bgNode, std::string file)
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	
+	float startHeight, startWidth, spriteHeight;
+	
+	startHeight = 0;
+	startWidth = 0;
+	
+	while (startHeight < visibleSize.height) {
+		while (startWidth < visibleSize.width) {
+			Sprite *bgSprite = Sprite::create(file);
+			bgSprite->setAnchorPoint(Point::ZERO);
+			bgSprite->setPosition(startWidth, startHeight);
+			bgNode->addChild(bgSprite);
+			
+			startWidth += bgSprite->getContentSize().width;
+			
+			spriteHeight = bgSprite->getContentSize().height;
+		}
+		
+		startWidth = 0;
+		startHeight += spriteHeight;
+	}
+}

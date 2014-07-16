@@ -34,4 +34,7 @@ Vector<SpriteFrame*> getSpriteFrames(std::string file, int width, int height);
 // 重新设置Sprite的刚体形状，适用于单个形状情形
 void resetPhysicsBody(Sprite *sprite, PhysicsShape *shape);
 
+// 以单个图片，重复显示作为整个显示区域背景，从左下往右上方向显示
+void repeatBackground(Node *bgNode, std::string file);
+
 #endif
