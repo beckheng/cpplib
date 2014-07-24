@@ -14,8 +14,10 @@
 #include <sstream>
 
 #include "cocos2d.h"
+#include "extensions/cocos-ext.h"
 
 USING_NS_CC;
+USING_NS_CC_EXT;
 
 // 平均速度移动action
 MoveTo* getAvgMoveToAction(Point orig, Point moveto, float time);
@@ -36,5 +38,10 @@ void resetPhysicsBody(Sprite *sprite, PhysicsShape *shape);
 
 // 以单个图片，重复显示作为整个显示区域背景，从左下往右上方向显示
 void repeatBackground(Node *bgNode, std::string file);
+
+void setControlButtonImage(ControlButton *button, std::string file);
+
+// 以shape的point,需要根据Node的锚点重新计算一次，用于物理引擎
+void recalcPointByAP(Node *node, Point *point, int num);
 
 #endif

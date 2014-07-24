@@ -115,3 +115,24 @@ void repeatBackground(Node *bgNode, std::string file)
 		startHeight += spriteHeight;
 	}
 }
+
+void setControlButtonImage(ControlButton *button, std::string file)
+{
+	SpriteFrame *spriteFrame = getSpriteFrame(file);
+	
+	button->setBackgroundSpriteFrameForState(spriteFrame, Control::State::NORMAL);
+	button->setBackgroundSpriteFrameForState(spriteFrame, Control::State::HIGH_LIGHTED);
+	button->setBackgroundSpriteFrameForState(spriteFrame, Control::State::DISABLED);
+	button->setBackgroundSpriteFrameForState(spriteFrame, Control::State::SELECTED);
+}
+
+void recalcPointByAP(Node *node, Point *point, int num)
+{
+	float offsetX = node->getAnchorPoint().x * node->getContentSize().width;
+	float offsetY = node->getAnchorPoint().y * node->getContentSize().height;
+	
+	for (int i = 0; i < num; i++) {
+		point[i].x = point[i].x - offsetX;
+		point[i].y = point[i].y - offsetY;
+	}
+}
