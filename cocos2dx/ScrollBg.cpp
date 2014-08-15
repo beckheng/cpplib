@@ -167,26 +167,17 @@ void ScrollBg::updateBg(float dt)
 	}
 	
 	int size = bgSprites.size();
-//	for (int i = 0; i < size; i++) {
-//		Sprite* it = bgSprites.at(i);
-//		Point n = it->getPosition();
-//		n.x += offsetX;
-//		n.y += offsetY;
-//		
-//		it->setPosition(n);
-//	}
 	
 	Point n = this->getPosition();
-	n.x += offsetX;
-	n.y += offsetY;
+	n.x += offsetX * dt;
+	n.y += offsetY * dt;
 	this->setPosition(n);
 	
-	scrollOffsetX += absOffsetX;
-	scrollOffsetY += absOffsetY;
+	scrollOffsetX += absOffsetX * dt;
+	scrollOffsetY += absOffsetY * dt;
 	
 	if (offsetX != 0)
 	{
-//		if (bgSprites.at(0)->getPositionX() + bgSprites.at(0)->getContentSize().width <= 0)
 		if (scrollOffsetX >= bgSprites.at(0)->getContentSize().width)
 		{
 			isSwapingSprite = true;
@@ -201,7 +192,6 @@ void ScrollBg::updateBg(float dt)
 	}
 	else if (offsetY != 0)
 	{
-//		if (bgSprites.at(0)->getPositionY() + bgSprites.at(0)->getContentSize().height <= 0)
 		if (scrollOffsetY >= bgSprites.at(0)->getContentSize().height)
 		{
 			isSwapingSprite = true;

@@ -19,7 +19,7 @@ USING_NS_CC;
  Vector<Sprite*> bgs;
  bgs.pushBack(bgSprite);
  ScrollBg *scrollBg = ScrollBg::create(); // 初始化
- scrollBg->setBg(bgs, -3, 0); // 添加背景, 指定滚动速度
+ scrollBg->setBg(bgs, -30, 0); // 添加背景, 指定每帧滚动距离基数
  scrollBg->setPosition(0, 290); // 设置位置
  this->addChild(scrollBg); // 显示背景
  scrollBg->scroll(); // 滚动,默认帧率
@@ -36,7 +36,7 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(ScrollBg);
 	
-	// 添加背景，设置每帧滚动速度
+	// 添加背景，指定每帧滚动距离基数
 	void setBg(Vector<Sprite*> &bgs, float pOffsetX, float pOffsetY);
 	
 	// 以指定的速度开始滚动，可以指定回调间隔，不执行此调用，则背景是静止的
